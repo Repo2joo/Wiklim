@@ -1,0 +1,244 @@
+.topnav {
+    background-color: #222222;
+    height: 60px;
+    position:relative;
+    width: 100%;
+    color:whitesmoke;
+    display: block;
+}
+a {
+    color:aqua;
+    text-decoration: none;
+}
+a:hover {
+    color:rgb(0, 184, 184);
+}
+body {
+    background-color: #101010;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+.wiklim {
+    display: block;
+    position:relative;
+    background-color: #101010;
+    height: 100%;
+    width: 100%;
+}
+.logoimg {
+    margin: 10px;
+}
+.naventry {
+    position: relative;
+    top:-20;
+    display: inline-table;
+    text-align: center;
+    font-size: 20px;
+    line-height: 50px;
+    padding-inline: 10px;
+    border-radius: 14px;
+    transition: 0.3s ease;
+}
+.naventry:hover {
+    background: #3b3b3b;
+}
+.dropdown {
+    position: relative;
+    max-height: 60px;
+    overflow: hidden;
+}
+.dropdown:hover {
+    overflow:unset;
+}
+.dropdown-box {
+    position:absolute;
+    overflow: hidden;
+    border-radius: 14;
+    border: 1.8px solid;
+    border-color:#3b3b3b;
+    width: auto;
+    z-index: 2;
+}
+.dropdown-entry{
+    background-color: #222222;
+    padding-inline: 20px;
+    font-size: medium;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    text-align: left;
+    line-height: 30px;
+    color: aliceblue;
+    transition: 0.3s ease;
+}
+.dropdown-entry:hover {
+    background-color: #3b3b3b;
+}
+.dropdown-drop {
+    display:block
+}
+.dropdown-line {
+    background-color: #3b3b3b;
+    height: 0.1rem;
+}
+.navbar-right {
+    line-height: 60px;
+    float: right;
+    height: 60px;
+    display: flex;
+}
+.search-box {
+    display: inline-block;
+    margin-top: 10;
+    margin-bottom: 10;
+    line-height: 10px;
+    border: 1px solid;
+    border-radius: 12;
+    border-color: #3b3b3b;
+    overflow: hidden;
+    margin-right: 30px;
+}
+.search-icon {
+    padding: 10px;
+    padding-right: 7;
+}
+.search-button {
+    background-color: transparent;
+    border: 0;
+    color: aliceblue;
+    padding: 12px;
+    transition: 0.3s ease;
+}
+.search-button:hover {
+    background-color:#3b3b3b;
+}
+.search-input {
+    background-color:transparent;
+    border: 0;
+    color:aliceblue;
+    height: 36;
+}
+.search-input:focus {
+    outline: none;  /* 포커스 시 나타나는 테두리 제거 */
+    box-shadow: none; /* 그림자 제거 */
+    max-height: 36;
+}
+.search-random {
+    padding-inline: 12px;
+    background-color: transparent;
+    border: 0px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 14px;
+    color: azure;
+    border: 1px solid;
+    border-radius: 10;
+    border-color: #3b3b3b;
+    transition: 0.3s ease;
+}
+.search-random:hover {
+    background-color:#3b3b3b;
+}
+.content-box {
+    height:auto;
+    position:relative;
+    max-width: 2000px;
+    width: 100%;
+    display: flex;
+}
+.content {
+    width: 100%;
+    margin-top: 20px;
+    border: 1px solid;
+    border-color: #3b3b3b;
+    padding-left: 30px;
+    padding-bottom: 10px;
+    border-radius: 10;
+    overflow: hidden;
+    margin-left: 40px;
+    background-color: #1D1D1D;
+    color: aliceblue;
+    margin-bottom: 20px;
+}
+.right-padding {
+    padding: 20px;
+    width: 400px;
+}
+.live {
+    color:aliceblue;
+    border: 1px solid;
+    border-radius: 18px;
+    background-color: #1D1D1D;
+    border-color: #3b3b3b;
+}
+.live-title {
+    padding: 10px;
+    font-size: 24px;
+    text-align: center;
+}
+@media (max-width: 1300px) {
+    .topnav {
+        height: 120px;
+    }
+    .search-random {margin-left: 20px;}
+    .navbar-right {
+        float: right;
+        width: 100%;
+    }
+    .search-random {
+        margin-top: -10px;
+        margin-bottom: 30px;
+    }
+    .search-box {
+        margin-top: -10px;
+        position: relative;
+        display: flex;
+        width: 100%;
+        overflow: hidden;
+        margin-bottom: 30px;
+    }
+    .search-input {
+        display: inline-block;
+        width: 100%;
+    }
+    .content-box {
+        width: 100%;
+    }
+    .content {
+        margin-top: 5;
+        margin-right: 40px;
+        max-width: none;
+    }
+    .right-padding {
+        display: none;
+    }
+}
+@media (max-width: 600px) {
+    .navbar-noticon {
+        display: none;
+    }
+    .content {
+        padding-left: 10;
+        margin-right: 0px;
+        margin-left: 0px;
+        max-width: none;
+    }
+}
+@media (max-width: 257px) {
+    .topnav{
+        height : 180px;
+    }
+}
+@media (max-width: 135px) { /*시바 이쯤되면 그냥 쓰지 말라 해*/
+    .search-box {
+        display: none;
+    }
+    .search-random {
+        display: none;
+    }
+}
+@media (max-width: 70px) {
+    .topnav {
+        display: none;
+    }
+}
