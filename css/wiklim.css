@@ -6,6 +6,14 @@
     color:whitesmoke;
     display: block;
 }
+body {
+    font-family: "Noto Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 900px;
+    font-style: normal;
+    font-variation-settings:
+      "wdth" 100;
+  }
 a {
     color:aqua;
     text-decoration: none;
@@ -25,6 +33,7 @@ body {
     background-color: #101010;
     height: 100%;
     width: 100%;
+    align-items: center;
 }
 .logoimg {
     margin: 10px;
@@ -33,6 +42,7 @@ body {
     position: relative;
     top:-20;
     display: inline-table;
+    color:aliceblue;
     text-align: center;
     font-size: 20px;
     line-height: 50px;
@@ -45,14 +55,14 @@ body {
 }
 .dropdown {
     position: relative;
+    clip-path: inset(0 0 0 0);
     max-height: 60px;
-    overflow: hidden;
 }
 .dropdown:hover {
-    overflow:unset;
+    clip-path: none; /* firefox is trash. respect chromium*/
 }
 .dropdown-box {
-    position:absolute;
+    position:fixed;
     overflow: hidden;
     border-radius: 14;
     border: 1.8px solid;
@@ -144,7 +154,8 @@ body {
     position:relative;
     max-width: 2000px;
     width: 100%;
-    display: flex;
+    display:flex;
+    align-items: flex-start;
 }
 .content {
     width: 100%;
@@ -170,11 +181,92 @@ body {
     border-radius: 18px;
     background-color: #1D1D1D;
     border-color: #3b3b3b;
+    overflow: hidden;
+    padding-bottom: 4;
 }
 .live-title {
+    padding: 14px;
+    padding-left: 20px;
+    font-size: 20px;
+    font-weight: 900;
+}
+.live-entry {
+    color: #dadada;
+    font-size: 14;
+    padding-left: 10px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    transition: 0.3s ease;
+}
+.live-entry:hover {
+    background-color: #3b3b3b;
+}
+.userbox-info {
+    display: flex;
+}
+.userbox {
+    background-color: #1D1D1D;
+    border: 1px solid;
+    border-color: #3b3b3b;
+    margin-bottom: 10px;
+    border-radius: 18px;
+    color: aliceblue;
+    padding: 10px;
+    overflow: hidden;
+    overflow-wrap: break-word;
+}
+.userbox-button {
+    text-align: left;
+    position: relative;
+    display: block;
+    background-color: #1D1D1D;
+    border: none;
+    color: aliceblue;
+    width: 100%;
     padding: 10px;
     font-size: 24px;
-    text-align: center;
+    border-radius: 5px;
+    transition: 0.3s ease;
+    margin-top: 4px;
+}
+.userbox-button:hover {
+    background-color: #3b3b3b;
+}
+.userbox-profile {
+    border: 2px solid;
+    border-radius: 50px;
+    border-color: #616161;
+    display: inline-block;
+    line-height: 0px;
+    height:60px ;
+    overflow: hidden;
+}
+.userbox-job {
+    position: relative;
+    font-size: 20px;
+    user-select: none;
+    font-weight:900;
+    margin: 0;
+}
+.userbox-username {
+    letter-spacing: 4px;
+    user-select: none;
+    position: relative;
+    font-weight: bold;
+    font-size: 20px;
+    margin: 0;
+}
+.userbox-liner {
+    position:relative;
+    display: block;
+    margin-left: 16px;
+    max-width: 220px;
+}
+.center-aligner {
+    justify-content: center;
+    width: 100%;
+    display: flex;
+    align-items: center;
 }
 @media (max-width: 1300px) {
     .topnav {
