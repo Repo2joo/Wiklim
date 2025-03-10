@@ -50,9 +50,21 @@ export default function Skin (props) {
             <div className="content-box">
                 <div className="content">
                     <div className="title-box">
-                        <h1>{props.data.title}</h1>
+                        <h1>{props.data.action != "watch" && (props.data.action+" - ")}{props.data.title}
+                            {props.data.action == "history" && (" ("+props.data.rev+"번째 버전)")}
+                        </h1>
+                            <div className="content-tool">
+                            {props.data.actiontype == "document" && (
+                                <>
+                                    {props.data.action != "watch" && (<Link className="content-tool-entry" href={`/w/${encodeURIComponent(props.data.namespace)}:${encodeURIComponent(props.data.title)}`}><i className="fas fa-file" /> 본문</Link>)}
+                                    {props.data.action != "edit" && (<Link className="content-tool-entry" href={`/edit/${encodeURIComponent(props.data.namespace)}:${encodeURIComponent(props.data.title)}`}>{props.data.CanDoWithThisDoc.edit == true ? (<i className="fas fa-pen" />):(<i className="fas fa-skull" />)} 편집</Link>)}
+                                    {props.data.action != "history" && (<Link className="content-tool-entry" href={`/history/${encodeURIComponent(props.data.namespace)}/${encodeURIComponent(props.data.title)}`}><i className="fas fa-toilet-paper" /> 역사</Link>)}
+                                    {props.data.action != "acl" && (<Link className="content-tool-entry" href={`/acl/${encodeURIComponent(props.data.namespace)}/${encodeURIComponent(props.data.title)}`}><i className="fas fa-key" /> ACL</Link>)}
+                                </>
+                            )}
+                            </div>
+                        
                     </div>
-                    <div className="content-tool">wow</div>
                     <div dangerouslySetInnerHTML={{"__html":props.data.bodycontent}} />
                     {props.data.hasdefault == true && (<Default action={props.data.action} />)}
                     {props.data.action == "license" && <SkinLicense />}

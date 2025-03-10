@@ -170,6 +170,7 @@ body {
     background-color: #1D1D1D;
     color: aliceblue;
     margin-bottom: 20px;
+    padding-right: 30px;
 }
 .right-padding {
     padding: 20px;
@@ -333,4 +334,31 @@ body {
     .topnav {
         display: none;
     }
+}
+.title-box {
+    display: flex;
+    justify-content: flex-end;
+}
+.content-tool {
+    position: relative;
+    margin-left: auto;
+    margin-top: 70px;
+    border: 1px solid;
+    border-radius: 30px;
+    display: inline-block;
+    border-color: #3b3b3b;
+    display: block;
+    height: 40;
+    overflow: hidden;
+}
+.content-tool-entry {
+    transition: 0.3s ease;
+    position:relative;
+    display: inline-block;
+    line-height: 40px;
+    color: aliceblue;
+    padding-inline: 10px;
+}
+.content-tool-entry:hover {
+    background-color: #3b3b3b;
 }
