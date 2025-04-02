@@ -99,6 +99,12 @@ body {
     height: 60px;
     display: flex;
 }
+.navbar-user {
+    line-height: 60px;
+    float: right;
+    height: 60px;
+    display: block;
+}
 .search-box {
     display: inline-block;
     margin-top: 10px;
@@ -158,6 +164,7 @@ body {
     width: 100%;
     display:flex;
     align-items: flex-start;
+    justify-content: center;
 }
 .select {
     user-select: unset;
@@ -174,6 +181,7 @@ body {
     overflow: hidden;
     margin-left: 40px;
     background-color: #1D1D1D;
+    max-width: 800px;
     color: aliceblue;
     margin-bottom: 20px;
     padding-right: 30px;
@@ -276,7 +284,13 @@ body {
     display: flex;
     align-items: center;
 }
+.navbar-user {
+    display: none;
+}
 @media (max-width: 1300px) {
+    .navbar-user {
+        display: block;
+    }
     .topnav {
         height: 120px;
     }
@@ -350,23 +364,73 @@ body {
     user-select: none;
     position: relative;
     margin-left: auto;
-    margin-top: 70px;
+    margin-top: 20px;
     border: 1px solid;
-    border-radius: 30px;
-    display: inline-block;
+    border-radius: 10px;
     border-color: #3b3b3b;
-    display: block;
-    height: 40px;
+    display: flex;
+    height: 30px;
     overflow: hidden;
 }
 .content-tool-entry {
+    font-size: small;
     transition: 0.3s ease;
     position:relative;
-    display: inline-block;
-    line-height: 40px;
+    display: block;
+    line-height: 30px;
     color: aliceblue;
     padding-inline: 10px;
 }
 .content-tool-entry:hover {
     background-color: #3b3b3b;
+}
+.dropbtn {
+    position: absolute;
+    right: 30;
+    top:20;
+    user-select: none;
+    background-color: transparent;
+    border: none;
+    color:aliceblue;
+    border: 1px solid;
+    border-radius: 100px;
+    overflow: hidden;
+    height: 40px;
+    width: 40px;
+    padding: none;
+    border-color: #3b3b3b;
+}
+.dropdown-content {
+    display: none;
+    position:absolute;
+    right: 30px;
+    top:70px;
+    z-index: 10;
+    background-color: #222222;
+    border: 1px solid;
+    border-radius: 5px;
+    border-color: #3b3b3b;
+    line-height:1;
+    overflow: hidden;
+}
+.dropdown-content-entry {
+    padding: 7px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-weight: 10px;
+    transition: 0.3s ease;
+    width: 100%;
+    color:white;
+    font-size: smaller;
+}
+.dropdown-content-entry:hover {
+    background-color: #3b3b3b;
+}
+.dropdown-content-user {
+    border: 1px solid;
+    border-color: #3b3b3b;
+    padding: 5px;
+    display: block;
+    width: 100%;
+    color: #dadada;
 }

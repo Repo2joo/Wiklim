@@ -3,9 +3,21 @@ import "./css/wiklim.css"
 import SkinLicense from "./skinlicense"
 import Default from "@/defaultcomponents/default"
 import { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
 export default function Skin (props) {
     const [rc, setrc] = useState([])
+    const router = useRouter();
     useEffect(() => {
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropbtn')) {
+              var dropdowns = document.querySelectorAll(".dropdown-content");
+              dropdowns.forEach(function(dropdown) {
+                if (dropdown.style.display === "block") {
+                  dropdown.style.display = "none";
+                }
+              });
+            }
+          }
         async function logic () {
             const rc = await fetch(`${process.env.NEXT_PUBLIC_WIKI_URL}/api/recentchanges/20`)
             const text = await rc.json();
@@ -13,8 +25,13 @@ export default function Skin (props) {
         }
         logic()
     }, [])
+    function toggleDropdown() {
+        var dropdownContent = document.querySelector(".dropdown-content");
+        dropdownContent.style.display = (dropdownContent.style.display === "block") ? "none" : "block";
+      }
     return (
     <div className="wiklim">
+        <script src="/skins/Wiklim/js/wiklim.js" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="on" />
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
@@ -46,8 +63,28 @@ export default function Skin (props) {
 
                 </div>
             </div>
+            <div className="navbar-user">
+                <button
+                style={{backgroundImage:"url('/skins/Wiklim/img/userbox-user.wow.png/')",backgroundSize:"cover"}}
+                className="dropbtn" onClick={(e) => {e.preventDefault();toggleDropdown()}}></button>
+                <div className="dropdown-content">
+                    <Link href={`/w/사용자:${props.data.user.name}`} className="dropdown-content-user">
+                        {props.data.user.isRegistered == true ? (
+                            props.data.user.permission.includes("owner") ? ("서버장") : ("사용자")
+                        ) : ("IP")}
+                        <br />
+                        <sub>{props.data.user.name}</sub>
+                    </Link>
+                    <div className="dropdown-content-entry"><i className="fas fa-moon" /> 다크 테마로</div>
+                    <Link href={"/login"}><div className="dropdown-content-entry"><i className="fas fa-sign-in" /> 로그인</div></Link>
+                    <Link href={"/register"}><div className="dropdown-content-entry"><i className="fas fa-user" /> 회원가입</div></Link>
+                </div>
+            </div>
             <div className="navbar-right">
-                <button className="search-random"><i className="fas fa-random" /></button>
+                <button className="search-random" onClick={(e) => {
+                    e.preventDefault();
+                    router.push("/randompage")
+                }}><i className="fas fa-random" /></button>
                 <div className="search-box">
                     <i className="search-icon fas fa-magnifying-glass" />
                     <input className="search-input" placeholder="wiklim 스킨 검색" />
@@ -63,17 +100,16 @@ export default function Skin (props) {
                         <h1>{props.data.action != "watch" && (props.data.action+" - ")}{props.data.title}
                             {props.data.action == "history" && (" ("+props.data.rev+"번째 버전)")}
                         </h1>
+                        {props.data.actiontype == "document" ? (
                             <div className="content-tool">
-                            {props.data.actiontype == "document" && (
-                                <>
                                     {props.data.action != "watch" && (<Link className="content-tool-entry" href={`/w/${encodeURIComponent(props.data.namespace)}:${encodeURIComponent(props.data.title)}`}><i className="fas fa-file" /> 본문</Link>)}
                                     {props.data.action != "edit" && (<Link className="content-tool-entry" href={`/edit/${encodeURIComponent(props.data.namespace)}:${encodeURIComponent(props.data.title)}`}>{props.data.CanDoWithThisDoc.edit == true ? (<i className="fas fa-pen" />):(<i className="fas fa-skull" />)} 편집</Link>)}
                                     {props.data.action != "history" && props.data.action != "historys" &&(<Link className="content-tool-entry" href={`/historys/${encodeURIComponent(props.data.namespace)}/${encodeURIComponent(props.data.title)}`}><i className="fas fa-toilet-paper" /> 역사</Link>)}
                                     {props.data.action != "acl" && (<Link className="content-tool-entry" href={`/acl/${encodeURIComponent(props.data.namespace)}/${encodeURIComponent(props.data.title)}`}><i className="fas fa-key" /> ACL</Link>)}
-                                </>
-                            )}
                             </div>
-                        
+                        ) : (
+                            <div className="content-tool" style={{border:"none"}}></div>
+                        )}
                     </div>
                     <div className="select" dangerouslySetInnerHTML={{"__html":props.data.bodycontent}} />
                     {props.data.hasdefault == true && (<Default action={props.data.action} />)}
