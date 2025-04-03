@@ -6,6 +6,7 @@ import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 export default function Skin (props) {
     const [rc, setrc] = useState([])
+    const [chevron, setchevron] = useState("down");
     const router = useRouter();
     useEffect(() => {
         window.onclick = function(event) {
@@ -40,7 +41,7 @@ export default function Skin (props) {
             <span className="logo"><Link href={"/"}><img className="logoimg" src="/logo.png" height={"40px"} style={{outline:"1px sloid"}}/></Link></span>
             <Link href={"/recentchanges"} className="naventry"><i className="fas fa-building" /><span className="navbar-noticon"> 최근변경</span></Link>
             <Link href={"/randompages"} className="naventry"><i className="fas fa-random" /><span className="navbar-noticon"> 렌덤페이지</span></Link>
-            <div className="naventry dropdown"><i className="fas fa-wrench" /><span className="navbar-noticon"> 도구</span> ⋁
+            <div className="naventry dropdown"><i className="fas fa-wrench" /><span className="navbar-noticon"> 도구</span>　<i className="fas fa-caret-down" />
                 <div className="dropdown-box" style={{width:"190px"}}>
                     <div className="dropdown-entry"><i className="fas fa-comment" /> 최근 토론</div>
                     <div className="dropdown-entry"><img style={{margin:0, padding:0, display:"inline"}} src="/skins/Wiklim/img/isolation.png" width={16}/> 고립된 페이지</div>
@@ -55,8 +56,11 @@ export default function Skin (props) {
                                 {(props.data.user.permission.includes(" edit_group ") ||props.data.user.permission.includes("owner")) && (
                                     <div className="dropdown-entry"><i className="fas fa-users" /> 그룹 설정</div>
                                 )}
-                                {(props.data.user.permission.includes(" site_notice ") ||props.data.user.permission.includes("owner")) && (
+                                {(props.data.user.permission.includes("site_notice") ||props.data.user.permission.includes("owner")) && (
                                     <div className="dropdown-entry"><i className="fas fa-bell" /> 사이트 알림 설정</div>
+                                )}
+                                {(props.data.user.permission.includes("mkns") ||props.data.user.permission.includes("owner")) && (
+                                    <Link href={"/mkns"} className="dropdown-entry"><i className="fas fa-folder" /> 이름공간 생성</Link>
                                 )}
                             </>
                     )}
@@ -76,8 +80,17 @@ export default function Skin (props) {
                         <sub>{props.data.user.name}</sub>
                     </Link>
                     <div className="dropdown-content-entry"><i className="fas fa-moon" /> 다크 테마로</div>
-                    <Link href={"/login"}><div className="dropdown-content-entry"><i className="fas fa-sign-in" /> 로그인</div></Link>
-                    <Link href={"/register"}><div className="dropdown-content-entry"><i className="fas fa-user" /> 회원가입</div></Link>
+                    {props.data.user.isRegistered == false ? (
+                        <>
+                            <Link href={"/login"}><div className="dropdown-content-entry"><i className="fas fa-sign-in" /> 로그인</div></Link>
+                            <Link href={"/register"}><div className="dropdown-content-entry"><i className="fas fa-user" /> 회원가입</div></Link>
+                        </>
+                    ) : (
+                        <>
+                            <Link href={"/preference"}><div className="dropdown-content-entry"><i className="fas fa-gear" /> 환경설정</div></Link>
+                            <Link href={`/logout/${encodeURIComponent(window.location.pathname)}`}><div className="dropdown-content-entry"><i className="fas fa-door-open" /> 로그아웃</div></Link>
+                        </>
+                    )}
                 </div>
             </div>
             <div className="navbar-right">
@@ -114,6 +127,10 @@ export default function Skin (props) {
                     <div className="select" dangerouslySetInnerHTML={{"__html":props.data.bodycontent}} />
                     {props.data.hasdefault == true && (<Default action={props.data.action} />)}
                     {props.data.action == "license" && <SkinLicense />}
+                    <div style={{width:"200%",border:"1px solid",borderColor:"#3b3b3b",marginTop:"10px",marginBottom:"10px",marginLeft:"-30px"}} />
+                    {Object.entries(props.data.Footers).map(([k, v]) => {
+                        return (<div style={{fontSize:"small",marginLeft:"-20px"}} key={k} dangerouslySetInnerHTML={{"__html":v}} />)
+                    })}
                 </div>
                 <div className="right-padding">
                     <div className="userbox">
@@ -138,7 +155,7 @@ export default function Skin (props) {
                                     <Link href={`/login/${encodeURIComponent(window.location.pathname)}`} className="userbox-button"><i className="fas fa-sign-in" /> 로그인</Link>
                                     <Link href={`/register/${encodeURIComponent(window.location.pathname)}`} className="userbox-button"><i className="fas fa-user" /> 회원가입</Link>
                                 </>
-                            ): (
+                            ) : (
                                 <>
                                     <Link href={`/preference`} className="userbox-button"><i className="fas fa-gear" /> 환경설정</Link>
                                     <Link href={`/logout/${encodeURIComponent(window.location.pathname)}`} className="userbox-button"><i className="fas fa-door-open" /> 로그아웃</Link> {/*로그 you out!*/}
