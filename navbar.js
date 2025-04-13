@@ -27,6 +27,8 @@ export default function NavBar(prop) {
                     <div className="dropdown-entry"><i className="fas fa-comment" /> 최근 토론</div>
                     <div className="dropdown-entry"><img style={{margin:0, padding:0, display:"inline"}} src="/skins/Wiklim/img/isolation.png" width={16}/> 고립된 페이지</div>
                     <Link href={"/namespaces"}><div className="dropdown-entry"><i className="fas fa-folder" /> 이름공간 목록</div></Link>
+                    <Link href={"/upload"}><div className="dropdown-entry"><i className="fas fa-upload" /> 업로드</div></Link>
+                    <Link href={"/log"}><div className="dropdown-entry"><i className="fas fa-scroll" /> 로그</div></Link>
                     <Link href={"/license"}><div className="dropdown-entry"><i className="fas fa-copyright" /> 라이선스</div></Link>
                     {props.data.user.isRegistered == true && (
                         props.data.user.permission.includes("admin") ||props.data.user.permission.includes("owner")) && (
