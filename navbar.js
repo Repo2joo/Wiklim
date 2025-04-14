@@ -1,7 +1,9 @@
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function NavBar(prop) {
+    const [result, setresult] = useState([]);
+    const [search, setsearch] = useState("");
     let props = prop.prop
     useEffect(() => {window.onclick = function(event) {
         if (!event.target.matches('.dropbtn')) {
@@ -77,18 +79,36 @@ export default function NavBar(prop) {
                     )}
                 </div>
             </div>
-            <div className="navbar-right">
-                <button className="search-random" onClick={(e) => {
-                    e.preventDefault();
-                    router.push("/randompage")
-                }}><i className="fas fa-random" /></button>
-                <div className="search-box">
-                    <i className="search-icon fas fa-magnifying-glass" />
-                    <input className="search-input" placeholder="wiklim 스킨 검색" />
-                    <button className="search-button"><i className="fas fa-arrow-right" /></button>
-                    <button className="search-button"><i className="fas fa-magnifying-glass" /></button>
+                <div className="navbar-right">
+                    <button className="search-random" onClick={(e) => {
+                        e.preventDefault();
+                        router.push("/randompage")
+                    }}><i className="fas fa-random" /></button>
+                        <div className="search-box">
+                            <div className="search-box2">
+                            <i className="search-icon fas fa-magnifying-glass" />
+                            <input onChange={async (e) => {
+                                e.preventDefault();
+                                setsearch(e.target.value)
+                                const resp = await fetch(`${process.env.NEXT_PUBLIC_WIKI_URL}/api/search/${encodeURIComponent(e.target.value)}`, {
+                                    method:"GET"
+                                })
+                                setresult((await resp.json()).body)
+                            }} className="search-input" placeholder="wiklim 스킨 검색" />
+                            <button className="search-button"><i className="fas fa-arrow-right" /></button>
+                            <button className="search-button"><i className="fas fa-magnifying-glass" /></button>
+                            </div>
+                            {result.length != 0 && (
+                                <div className="search-result-box">
+                                    {result.map((e) => {
+                                        return (
+                                            <div className="search-result-entry" key={e.id}>{e.prettytitle}</div>
+                                        )
+                                    })}
+                                </div>
+                            )}
+                        </div>
                 </div>
-            </div>
         </nav>
     );
 }
