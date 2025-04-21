@@ -32,7 +32,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 `}</pre>
-    Special Thank to enpotid :D
+    Special Thank to enpotid :D for review
     <h2 style={{marginBottom:"-5px"}}>Opensource License</h2>
     <pre style={{display:"inline-block"}}>Font Awesome</pre> from <a href="https://fontawesome.com/">fontawesome.com</a> CC BY 4.0 MIT<br />
     <pre style={{display:"inline-block"}}>Noto Sans</pre> from <a href="https://github.com/notofonts/latin-greek-cyrillic">The Noto Project</a> OFL
