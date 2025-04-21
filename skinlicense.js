@@ -36,7 +36,5 @@ SOFTWARE.
     <h2 style={{marginBottom:"-5px"}}>Opensource License</h2>
     <pre style={{display:"inline-block"}}>Font Awesome</pre> from <a href="https://fontawesome.com/">fontawesome.com</a> CC BY 4.0 MIT<br />
     <pre style={{display:"inline-block"}}>Noto Sans</pre> from <a href="https://github.com/notofonts/latin-greek-cyrillic">The Noto Project</a> OFL
-    <h2>PR 대환영</h2>
-    ༼　　　つ　　　◕　_　◕　　　༽　つ ༼　　　つ　　　◕　_　◕　　　༽　　　つ{"<(PR을 해서 저의 사지가 찟기는 것을 막아주세요)"}
     </>
 }
