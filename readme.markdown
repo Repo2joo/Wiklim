@@ -7,4 +7,4 @@ MIT인데 라이선스 명시 불필요.
 img 폴더 내에는 CC BY-ND가 적용됨
 # contributers
 - [Duswnsey](https://github.com/Duswnsey)
-- [enpotid?](https://github.com/enpotid)
+special thanks to [enpotid](https://github.com/enpotid)
